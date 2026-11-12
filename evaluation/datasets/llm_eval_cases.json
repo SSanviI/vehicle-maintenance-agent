@@ -1,0 +1,266 @@
+[
+  {
+    "id": "norm_01",
+    "category": "normal_input",
+    "description": "Standard multi-fact input with normal phrasing",
+    "input": "My brakes are worn out and my battery is weak.",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Brake_Condition": "Worn Out",
+      "Battery_Status": "Weak"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "norm_02",
+    "category": "normal_input",
+    "description": "Vehicle age and reported issues",
+    "input": "My vehicle is 4 years old and has 2 reported issues.",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Vehicle_Age": 4,
+      "Reported_Issues": 2
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "norm_03",
+    "category": "normal_input",
+    "description": "Zero accidents explicit declaration",
+    "input": "I have had 0 accidents and maintenance history is good.",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Accident_History": 0,
+      "Maintenance_History": "Good"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "typo_01",
+    "category": "spelling_mistakes",
+    "description": "Battery status with double letters and spelling mistakes",
+    "input": "batterry is weakk",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Battery_Status": "Weak"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "typo_02",
+    "category": "spelling_mistakes",
+    "description": "Brakes abbreviation and typo",
+    "input": "brakes r worn",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Brake_Condition": "Worn Out"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "typo_03",
+    "category": "spelling_mistakes",
+    "description": "Vehicle age typo and abbreviation",
+    "input": "my vehical is 2 yrs old",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Vehicle_Age": 2
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "typo_04",
+    "category": "spelling_mistakes",
+    "description": "Maintenance history typo",
+    "input": "maintainance is avrage",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Maintenance_History": "Average"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "typo_05",
+    "category": "spelling_mistakes",
+    "description": "Service history typo",
+    "input": "servied 3 times",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Service_History": 3
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "short_01",
+    "category": "short_answers",
+    "description": "Short answer '2 years' when Vehicle_Age is active question",
+    "input": "2 years",
+    "current_question": "Vehicle_Age",
+    "initial_state": {},
+    "expected_extracted": {
+      "Vehicle_Age": 2
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "short_02",
+    "category": "short_answers",
+    "description": "Short answer 'good' when Brake_Condition is active question",
+    "input": "good",
+    "current_question": "Brake_Condition",
+    "initial_state": {},
+    "expected_extracted": {
+      "Brake_Condition": "Good"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "short_03",
+    "category": "short_answers",
+    "description": "Short answer 'weak' when Battery_Status is active question",
+    "input": "weak",
+    "current_question": "Battery_Status",
+    "initial_state": {},
+    "expected_extracted": {
+      "Battery_Status": "Weak"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "short_04",
+    "category": "short_answers",
+    "description": "Short answer '3' when Reported_Issues is active question",
+    "input": "3",
+    "current_question": "Reported_Issues",
+    "initial_state": {},
+    "expected_extracted": {
+      "Reported_Issues": 3
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "short_05",
+    "category": "short_answers",
+    "description": "Short answer '0 accidents' when Accident_History is active question",
+    "input": "0 accidents",
+    "current_question": "Accident_History",
+    "initial_state": {},
+    "expected_extracted": {
+      "Accident_History": 0
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "short_06",
+    "category": "short_answers",
+    "description": "Date format answer when Last_Service_Date is active question",
+    "input": "27/08/2025",
+    "current_question": "Last_Service_Date",
+    "initial_state": {},
+    "expected_extracted": {
+      "Last_Service_Date": "2025-08-27"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "var_01",
+    "category": "natural_language_variations",
+    "description": "Variation: 'battery seems fine'",
+    "input": "battery seems fine",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Battery_Status": "Good"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "var_02",
+    "category": "natural_language_variations",
+    "description": "Variation: 'the battery is in good condition'",
+    "input": "the battery is in good condition",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Battery_Status": "Good"
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "var_03",
+    "category": "natural_language_variations",
+    "description": "Variation: 'I bought the car 3 years ago'",
+    "input": "I bought the car 3 years ago",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Vehicle_Age": 3
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "multi_01",
+    "category": "multiple_features",
+    "description": "Four features in a single message",
+    "input": "My car is 5 years old, has 3 problems, battery is weak and it has had 4 services.",
+    "current_question": null,
+    "initial_state": {},
+    "expected_extracted": {
+      "Vehicle_Age": 5,
+      "Reported_Issues": 3,
+      "Battery_Status": "Weak",
+      "Service_History": 4
+    },
+    "expected_unavailable": []
+  },
+  {
+    "id": "state_corr_01",
+    "category": "state_correction",
+    "description": "Multi-turn state correction: User corrects weak battery to good",
+    "multi_turn": [
+      {
+        "turn": 1,
+        "input": "My battery is weak.",
+        "expected_state": {
+          "Battery_Status": "Weak"
+        }
+      },
+      {
+        "turn": 2,
+        "input": "Actually battery is good.",
+        "expected_state": {
+          "Battery_Status": "Good"
+        }
+      }
+    ]
+  },
+  {
+    "id": "state_corr_02",
+    "category": "state_correction",
+    "description": "Multi-turn state correction: User corrects vehicle age from 5 to 3 years",
+    "multi_turn": [
+      {
+        "turn": 1,
+        "input": "Vehicle age is 5 years.",
+        "expected_state": {
+          "Vehicle_Age": 5
+        }
+      },
+      {
+        "turn": 2,
+        "input": "Sorry, made a mistake, it is 3 years old.",
+        "expected_state": {
+          "Vehicle_Age": 3
+        }
+      }
+    ]
+  }
+]

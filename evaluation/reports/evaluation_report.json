@@ -1,0 +1,207 @@
+{
+  "evaluated_at": "2026-08-29T11:29:44.763619+00:00",
+  "ml": {
+    "model": "RandomForest",
+    "model_type": "RandomForestClassifier",
+    "dataset_path": "vehicle_maintenance_data.csv",
+    "test_samples": 7500,
+    "accuracy": 0.9645333333333334,
+    "precision": 1.0,
+    "recall": 0.9562139917695474,
+    "f1": 0.9776169639851902,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "confusion_matrix": [
+      [
+        1425,
+        0
+      ],
+      [
+        266,
+        5809
+      ]
+    ],
+    "true_positives": 5809,
+    "true_negatives": 1425,
+    "false_positives": 0,
+    "false_negatives": 266,
+    "calibration_error": 0.1006304342481597,
+    "brier_score": 0.03595166153755934,
+    "class_distribution": {
+      "total_samples": 7500,
+      "class_0_no_maintenance": 1425,
+      "class_1_maintenance_required": 6075,
+      "positive_ratio": 0.81
+    },
+    "evaluated_at": "2026-08-29T11:29:45.232521+00:00"
+  },
+  "shap": {
+    "total_test_cases": 6,
+    "successful_explanations": 6,
+    "explanation_success_rate": 1.0,
+    "top_factor_validity_rate": 1.0,
+    "feature_schema_compliance_rate": 1.0,
+    "evaluated_at": "2026-08-29T11:29:46.156123+00:00",
+    "case_details": [
+      {
+        "case_id": "shap_case_01",
+        "name": "High Risk \u2014 Weak Battery & Worn Brakes",
+        "prediction_class": 1,
+        "risk_level": "HIGH",
+        "model_score": 1.0,
+        "explanation_available": true,
+        "main_factor": {
+          "feature": "Reported_Issues",
+          "display_name": "Reported issues",
+          "value": 4,
+          "contribution": 0.1773,
+          "shap_value": 0.1773,
+          "abs_contribution": 0.1773,
+          "direction": "higher_risk"
+        },
+        "all_features_in_schema": true,
+        "top_factor_valid": true,
+        "top_contributors_count": 4,
+        "shap_base_value": 0.49992603466270724
+      },
+      {
+        "case_id": "shap_case_02",
+        "name": "Low Risk \u2014 Good Brakes, Good Battery, 0 Issues",
+        "prediction_class": 0,
+        "risk_level": "LOW",
+        "model_score": 0.186,
+        "explanation_available": true,
+        "main_factor": {
+          "feature": "Reported_Issues",
+          "display_name": "Reported issues",
+          "value": 0,
+          "contribution": -0.118,
+          "shap_value": -0.118,
+          "abs_contribution": 0.118,
+          "direction": "lower_risk"
+        },
+        "all_features_in_schema": true,
+        "top_factor_valid": true,
+        "top_contributors_count": 4,
+        "shap_base_value": 0.49992603466270724
+      },
+      {
+        "case_id": "shap_case_03",
+        "name": "Full Assessment State \u2014 9 Known Features",
+        "prediction_class": 1,
+        "risk_level": "HIGH",
+        "model_score": 0.9007,
+        "explanation_available": true,
+        "main_factor": {
+          "feature": "Battery_Status",
+          "display_name": "Battery status",
+          "value": "Weak",
+          "contribution": 0.4112,
+          "shap_value": 0.4112,
+          "abs_contribution": 0.4112,
+          "direction": "higher_risk"
+        },
+        "all_features_in_schema": true,
+        "top_factor_valid": true,
+        "top_contributors_count": 9,
+        "shap_base_value": 0.49992603466270724
+      },
+      {
+        "case_id": "shap_case_04",
+        "name": "Minimal Input State \u2014 Exactly 2 Known Features",
+        "prediction_class": 1,
+        "risk_level": "HIGH",
+        "model_score": 0.8537,
+        "explanation_available": true,
+        "main_factor": {
+          "feature": "Brake_Condition",
+          "display_name": "Brake condition",
+          "value": "Worn Out",
+          "contribution": 0.404,
+          "shap_value": 0.404,
+          "abs_contribution": 0.404,
+          "direction": "higher_risk"
+        },
+        "all_features_in_schema": true,
+        "top_factor_valid": true,
+        "top_contributors_count": 2,
+        "shap_base_value": 0.49992603466270724
+      },
+      {
+        "case_id": "shap_case_05",
+        "name": "Mixed State \u2014 Poor Maintenance History with Good Battery",
+        "prediction_class": 0,
+        "risk_level": "LOW",
+        "model_score": 0.4131,
+        "explanation_available": true,
+        "main_factor": {
+          "feature": "Battery_Status",
+          "display_name": "Battery status",
+          "value": "Good",
+          "contribution": -0.0839,
+          "shap_value": -0.0839,
+          "abs_contribution": 0.0839,
+          "direction": "lower_risk"
+        },
+        "all_features_in_schema": true,
+        "top_factor_valid": true,
+        "top_contributors_count": 3,
+        "shap_base_value": 0.49992603466270724
+      },
+      {
+        "case_id": "shap_case_06",
+        "name": "Accident & Tire Focus",
+        "prediction_class": 0,
+        "risk_level": "LOW",
+        "model_score": 0.4122,
+        "explanation_available": true,
+        "main_factor": {
+          "feature": "Accident_History",
+          "display_name": "Accident history",
+          "value": 2,
+          "contribution": 0.0298,
+          "shap_value": 0.0298,
+          "abs_contribution": 0.0298,
+          "direction": "higher_risk"
+        },
+        "all_features_in_schema": true,
+        "top_factor_valid": true,
+        "top_contributors_count": 3,
+        "shap_base_value": 0.49992603466270724
+      }
+    ]
+  },
+  "llm": {
+    "total_test_cases": 36,
+    "passed_cases": 30,
+    "failed_cases": 6,
+    "overall_pass_rate": 0.8333333333333334,
+    "judge_pass_rate": 0.8333333333333334,
+    "deterministic_compliance_rate": 1.0,
+    "llm_judge_cases": 36,
+    "deterministic_only_cases": 0,
+    "judge_llm_failures": 0,
+    "fallback_count": 0,
+    "input_extraction_accuracy": 1.0,
+    "question_relevance_rate": 0.9166666666666666,
+    "dataset_compliance_rate": 0.9722222222222222,
+    "faithfulness_rate": 1.0,
+    "state_consistency_rate": 1.0,
+    "hallucination_free_rate": 1.0,
+    "response_relevance_rate": 0.8611111111111112,
+    "response_quality_rate": 0.8333333333333334,
+    "post_assessment_routing_accuracy": 1.0,
+    "overall_score": 0.95,
+    "score_weights": {
+      "hallucination_free_rate": 0.2,
+      "faithfulness_rate": 0.15,
+      "dataset_compliance_rate": 0.15,
+      "state_consistency_rate": 0.15,
+      "response_relevance_rate": 0.15,
+      "question_relevance_rate": 0.1,
+      "response_quality_rate": 0.1
+    },
+    "score_formula": "0.20*hallucination_free + 0.15*faithfulness + 0.15*dataset_compliance + 0.15*state_consistency + 0.15*relevance + 0.10*question_relevance + 0.10*quality",
+    "evaluated_at": "2026-08-29T11:37:29.825609+00:00"
+  }
+}

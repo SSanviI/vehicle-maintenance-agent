@@ -1,0 +1,55 @@
+[
+  {
+    "id": "q_01",
+    "category": "dynamic_question_generation",
+    "description": "After mentioning a strange noise, system should dynamically ask about a relevant vehicle feature in the dataset.",
+    "input": "My car is making a strange noise.",
+    "initial_state": {},
+    "must_ask_dataset_feature": true,
+    "must_not_ask": []
+  },
+  {
+    "id": "q_02",
+    "category": "no_reasking_known_features",
+    "description": "When Brake_Condition is already confirmed, system must never ask for brake condition again.",
+    "input": "I have also noticed some vibration.",
+    "initial_state": {
+      "Brake_Condition": "Good"
+    },
+    "must_ask_dataset_feature": true,
+    "must_not_ask": ["Brake_Condition"]
+  },
+  {
+    "id": "q_03",
+    "category": "uncertainty_and_declined_feature",
+    "description": "User states 'I don't know' for active question. System must mark feature declined and select another valid feature.",
+    "input": "I don't know",
+    "current_question": "Reported_Issues",
+    "initial_state": {
+      "Brake_Condition": "Good"
+    },
+    "expected_declined": ["Reported_Issues"],
+    "must_ask_dataset_feature": true,
+    "must_not_ask": ["Brake_Condition", "Reported_Issues"]
+  },
+  {
+    "id": "q_04",
+    "category": "dataset_boundary_compliance",
+    "description": "System must only generate questions strictly within the 19 dataset features.",
+    "input": "What else do you need to know?",
+    "initial_state": {
+      "Vehicle_Age": 3,
+      "Battery_Status": "Good"
+    },
+    "must_ask_dataset_feature": true,
+    "must_not_ask": ["Vehicle_Age", "Battery_Status"]
+  },
+  {
+    "id": "q_05",
+    "category": "single_question_constraint",
+    "description": "System should only ask at most ONE question per turn during assessment.",
+    "input": "My battery seems fine.",
+    "initial_state": {},
+    "max_question_count": 1
+  }
+]

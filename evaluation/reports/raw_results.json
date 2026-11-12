@@ -1,0 +1,2036 @@
+[
+  {
+    "case_id": "norm_01",
+    "category": "normal_input",
+    "description": "Standard multi-fact input with normal phrasing",
+    "input": "My brakes are worn out and my battery is weak.",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Worn Out, battery condition: Weak). Based on what you've shared so far, the model indicates maintenance may be required (HIGH risk level). Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Brake_Condition": "Worn Out",
+        "Battery_Status": "Weak"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Worn Out",
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 2,
+    "extraction_correct_count": 2,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly extracted and acknowledged the provided vehicle state, accurately reported the HIGH risk prediction, and appropriately asked for the next required schema feature (Reported_Issues) without hallucination or deflection.",
+      "judge_source": "llm",
+      "model": "qwen/qwen3.6-27b",
+      "provider": "secondary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "norm_02",
+    "category": "normal_input",
+    "description": "Vehicle age and reported issues",
+    "input": "My vehicle is 4 years old and has 2 reported issues.",
+    "response": "Thank you, I have recorded your vehicle details (number of reported issues: 2, vehicle age in years: 4). Based on what you've shared so far, the model indicates maintenance is not currently required (LOW risk level). How would you describe the vehicle's maintenance history \u2014 Good, Average, Poor?",
+    "expected": {
+      "expected_extracted": {
+        "Vehicle_Age": 4,
+        "Reported_Issues": 2
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Reported_Issues": 2,
+        "Vehicle_Age": 4
+      },
+      "detected_intent": null,
+      "current_question_feature": "Maintenance_History"
+    },
+    "extraction_expected_count": 2,
+    "extraction_correct_count": 2,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly recorded the provided state, reflected the LOW risk prediction, stayed within the schema, and asked a relevant follow\u2011up about Maintenance_History.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "norm_03",
+    "category": "normal_input",
+    "description": "Zero accidents explicit declaration",
+    "input": "I have had 0 accidents and maintenance history is good.",
+    "response": "Thank you, I have recorded your vehicle details (maintenance history: Good, number of past accidents: 0). Based on what you've shared so far, the model indicates maintenance is not currently required (LOW risk level). Could you share the number of service visits?",
+    "expected": {
+      "expected_extracted": {
+        "Accident_History": 0,
+        "Maintenance_History": "Good"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Maintenance_History": "Good",
+        "Accident_History": 0
+      },
+      "detected_intent": null,
+      "current_question_feature": "Service_History"
+    },
+    "extraction_expected_count": 2,
+    "extraction_correct_count": 2,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly records the provided accident and maintenance info, reflects the LOW risk prediction, asks a relevant follow\u2011up about Service_History, and stays within the schema without fabricating data.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "typo_01",
+    "category": "spelling_mistakes",
+    "description": "Battery status with double letters and spelling mistakes",
+    "input": "batterry is weakk",
+    "response": "Thank you, I have recorded your vehicle details (battery condition: Weak). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Battery_Status": "Weak"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly extracted the weak battery status, stayed within the schema, asked a relevant follow\u2011up about reported issues, and made no unsupported claims.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "typo_02",
+    "category": "spelling_mistakes",
+    "description": "Brakes abbreviation and typo",
+    "input": "brakes r worn",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Worn Out). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Brake_Condition": "Worn Out"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Worn Out"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly extracted the brake condition, stayed within the schema, asked a relevant follow\u2011up about Reported_Issues, and introduced no hallucinated information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "typo_03",
+    "category": "spelling_mistakes",
+    "description": "Vehicle age typo and abbreviation",
+    "input": "my vehical is 2 yrs old",
+    "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 2). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Vehicle_Age": 2
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Age": 2
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant accurately extracted Vehicle_Age=2 despite the typo and asked a relevant follow\u2011up about Reported_Issues, staying within the schema and without hallucination.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "typo_04",
+    "category": "spelling_mistakes",
+    "description": "Maintenance history typo",
+    "input": "maintainance is avrage",
+    "response": "Thank you, I have recorded your vehicle details (maintenance history: Average). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Maintenance_History": "Average"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Maintenance_History": "Average"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly extracted the maintenance history, stayed within the schema, asked a relevant follow\u2011up about Reported_Issues, and introduced no unsupported or contradictory information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "typo_05",
+    "category": "spelling_mistakes",
+    "description": "Service history typo",
+    "input": "servied 3 times",
+    "response": "Thank you, I have recorded your vehicle details (number of service visits: 3). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Service_History": 3
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Service_History": 3
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly extracted the service history, stayed within the schema, asked a relevant follow\u2011up about Reported_Issues, and introduced no hallucinated information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "short_01",
+    "category": "short_answers",
+    "description": "Short answer '2 years' when Vehicle_Age is active question",
+    "input": "2 years",
+    "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 2). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Vehicle_Age": 2
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Vehicle_Age"
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Age": 2
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly recorded the Vehicle_Age, stayed within the schema, asked the relevant next question, and introduced no hallucinations.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "short_02",
+    "category": "short_answers",
+    "description": "Short answer 'good' when Brake_Condition is active question",
+    "input": "good",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Brake_Condition": "Good"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Brake_Condition"
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "Assistant correctly recorded the brake condition as Good and asked a relevant next question about Reported_Issues.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "short_03",
+    "category": "short_answers",
+    "description": "Short answer 'weak' when Battery_Status is active question",
+    "input": "weak",
+    "response": "Thank you, I have recorded your vehicle details (battery condition: Weak). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Battery_Status": "Weak"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Battery_Status"
+    },
+    "actual": {
+      "known_features": {
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "Assistant correctly recorded the weak battery status and asked the next relevant question about Reported_Issues.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "short_04",
+    "category": "short_answers",
+    "description": "Short answer '3' when Reported_Issues is active question",
+    "input": "3",
+    "response": "Thank you, I have recorded your vehicle details (number of reported issues: 3). Let's narrow down your vehicle's condition with a few specific questions. How would you describe the vehicle's battery condition \u2014 New, Good, Weak?",
+    "expected": {
+      "expected_extracted": {
+        "Reported_Issues": 3
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Reported_Issues"
+    },
+    "actual": {
+      "known_features": {
+        "Reported_Issues": 3
+      },
+      "detected_intent": null,
+      "current_question_feature": "Battery_Status"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant accurately recorded the reported issues (3) and asked a relevant next question about Battery_Status, staying within schema and consistent with the canonical state.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "short_05",
+    "category": "short_answers",
+    "description": "Short answer '0 accidents' when Accident_History is active question",
+    "input": "0 accidents",
+    "response": "Thank you, I have recorded your vehicle details (number of past accidents: 0). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Accident_History": 0
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Accident_History"
+    },
+    "actual": {
+      "known_features": {
+        "Accident_History": 0
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly recorded the accident count, stayed within the schema, asked a relevant next question, and introduced no hallucinations.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "short_06",
+    "category": "short_answers",
+    "description": "Date format answer when Last_Service_Date is active question",
+    "input": "27/08/2025",
+    "response": "Thank you, I have recorded your vehicle details (date of the last service: 2025-08-27). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Last_Service_Date": "2025-08-27"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Last_Service_Date"
+    },
+    "actual": {
+      "known_features": {
+        "Last_Service_Date": "2025-08-27"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly recorded the provided date, stayed within the schema, asked the relevant next question, and introduced no hallucinated information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "var_01",
+    "category": "natural_language_variations",
+    "description": "Variation: 'battery seems fine'",
+    "input": "battery seems fine",
+    "response": "Thank you, I have recorded your vehicle details (battery condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Battery_Status": "Good"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Battery_Status": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly records the battery status as Good, stays within the dataset schema, asks a relevant follow\u2011up about Reported_Issues, and contains no hallucinated or contradictory information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "var_02",
+    "category": "natural_language_variations",
+    "description": "Variation: 'the battery is in good condition'",
+    "input": "the battery is in good condition",
+    "response": "Thank you, I have recorded your vehicle details (battery condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Battery_Status": "Good"
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Battery_Status": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant accurately recorded the battery status, stayed within the schema, asked a relevant follow\u2011up about reported issues, and introduced no hallucinated information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "var_03",
+    "category": "natural_language_variations",
+    "description": "Variation: 'I bought the car 3 years ago'",
+    "input": "I bought the car 3 years ago",
+    "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 3). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": {
+        "Vehicle_Age": 3
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Age": 3
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 1,
+    "extraction_correct_count": 1,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly extracted Vehicle_Age=3, stayed within schema, asked a relevant follow\u2011up about Reported_Issues, and made no unsupported claims.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "multi_01",
+    "category": "multiple_features",
+    "description": "Four features in a single message",
+    "input": "My car is 5 years old, has 3 problems, battery is weak and it has had 4 services.",
+    "response": "Thank you, I have recorded your vehicle details (vehicle type: Car, number of reported issues: 3, vehicle age in years: 5). Based on what you've shared so far, the model indicates maintenance may be required (HIGH risk level). How would you describe the vehicle's maintenance history \u2014 Good, Average, Poor?",
+    "expected": {
+      "expected_extracted": {
+        "Vehicle_Age": 5,
+        "Reported_Issues": 3,
+        "Battery_Status": "Weak",
+        "Service_History": 4
+      },
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Model": "Car",
+        "Reported_Issues": 3,
+        "Vehicle_Age": 5,
+        "Service_History": 4,
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Maintenance_History"
+    },
+    "extraction_expected_count": 4,
+    "extraction_correct_count": 4,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly acknowledged the provided features, accurately reported the HIGH risk prediction, and appropriately asked for the next required schema feature (Maintenance_History) without hallucinations or deflections.",
+      "judge_source": "llm",
+      "model": "qwen/qwen3.6-27b",
+      "provider": "secondary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "state_corr_01",
+    "category": "state_correction",
+    "description": "Multi-turn state correction: User corrects weak battery to good",
+    "input": [
+      "My battery is weak.",
+      "Actually battery is good."
+    ],
+    "response": [
+      "Thank you, I have recorded your vehicle details (battery condition: Weak). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+      "Thank you, I have recorded your vehicle details (battery condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?"
+    ],
+    "expected": {
+      "multi_turn": [
+        {
+          "turn": 1,
+          "input": "My battery is weak.",
+          "expected_state": {
+            "Battery_Status": "Weak"
+          }
+        },
+        {
+          "turn": 2,
+          "input": "Actually battery is good.",
+          "expected_state": {
+            "Battery_Status": "Good"
+          }
+        }
+      ]
+    },
+    "actual": {
+      "final_state": {
+        "Battery_Status": "Good"
+      },
+      "turn_responses": [
+        "Thank you, I have recorded your vehicle details (battery condition: Weak). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+        "Thank you, I have recorded your vehicle details (battery condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?"
+      ]
+    },
+    "is_multi_turn": true,
+    "turns": [
+      {
+        "turn": 1,
+        "input": "My battery is weak.",
+        "response": "Thank you, I have recorded your vehicle details (battery condition: Weak). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+        "state": {
+          "Battery_Status": "Weak"
+        },
+        "deterministic_checks": {
+          "dataset_compliance": true,
+          "state_consistency": true,
+          "guard_valid": true,
+          "passed": true,
+          "guard_violations": []
+        },
+        "judge": {
+          "faithfulness": 1,
+          "relevance": 1,
+          "dataset_compliance": 1,
+          "state_consistency": 1,
+          "question_relevance": 1,
+          "hallucination": 0,
+          "response_quality": 1,
+          "passed": true,
+          "reason": "The assistant correctly recorded the weak battery status, asked a relevant follow\u2011up about Reported_Issues, stayed within the schema, and introduced no hallucinated information.",
+          "judge_source": "llm",
+          "model": "openai/gpt-oss-120b",
+          "provider": "primary",
+          "error": null
+        }
+      },
+      {
+        "turn": 2,
+        "input": "Actually battery is good.",
+        "response": "Thank you, I have recorded your vehicle details (battery condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+        "state": {
+          "Battery_Status": "Good"
+        },
+        "deterministic_checks": {
+          "dataset_compliance": true,
+          "state_consistency": true,
+          "guard_valid": true,
+          "passed": true,
+          "guard_violations": []
+        },
+        "judge": {
+          "faithfulness": 1,
+          "relevance": 1,
+          "dataset_compliance": 1,
+          "state_consistency": 1,
+          "question_relevance": 1,
+          "hallucination": 0,
+          "response_quality": 1,
+          "passed": true,
+          "reason": "Assistant correctly recorded the battery status as Good and asked a relevant follow\u2011up about Reported_Issues, staying within the schema and without hallucination.",
+          "judge_source": "llm",
+          "model": "openai/gpt-oss-120b",
+          "provider": "primary",
+          "error": null
+        }
+      }
+    ],
+    "deterministic_checks": {
+      "state_consistency": true,
+      "dataset_compliance": true,
+      "guard_valid": true,
+      "passed": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "Assistant correctly recorded the battery status as Good and asked a relevant follow\u2011up about Reported_Issues, staying within the schema and without hallucination.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "state_corr_02",
+    "category": "state_correction",
+    "description": "Multi-turn state correction: User corrects vehicle age from 5 to 3 years",
+    "input": [
+      "Vehicle age is 5 years.",
+      "Sorry, made a mistake, it is 3 years old."
+    ],
+    "response": [
+      "Thank you, I have recorded your vehicle details (vehicle age in years: 5). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+      "Thank you, I have recorded your vehicle details (vehicle age in years: 3). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?"
+    ],
+    "expected": {
+      "multi_turn": [
+        {
+          "turn": 1,
+          "input": "Vehicle age is 5 years.",
+          "expected_state": {
+            "Vehicle_Age": 5
+          }
+        },
+        {
+          "turn": 2,
+          "input": "Sorry, made a mistake, it is 3 years old.",
+          "expected_state": {
+            "Vehicle_Age": 3
+          }
+        }
+      ]
+    },
+    "actual": {
+      "final_state": {
+        "Vehicle_Age": 3
+      },
+      "turn_responses": [
+        "Thank you, I have recorded your vehicle details (vehicle age in years: 5). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+        "Thank you, I have recorded your vehicle details (vehicle age in years: 3). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?"
+      ]
+    },
+    "is_multi_turn": true,
+    "turns": [
+      {
+        "turn": 1,
+        "input": "Vehicle age is 5 years.",
+        "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 5). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+        "state": {
+          "Vehicle_Age": 5
+        },
+        "deterministic_checks": {
+          "dataset_compliance": true,
+          "state_consistency": true,
+          "guard_valid": true,
+          "passed": true,
+          "guard_violations": []
+        },
+        "judge": {
+          "faithfulness": 1,
+          "relevance": 1,
+          "dataset_compliance": 1,
+          "state_consistency": 1,
+          "question_relevance": 1,
+          "hallucination": 0,
+          "response_quality": 1,
+          "passed": true,
+          "reason": "The assistant correctly recorded the provided vehicle age, stayed within the schema, asked a relevant follow\u2011up about Reported_Issues, and introduced no hallucinated information.",
+          "judge_source": "llm",
+          "model": "openai/gpt-oss-120b",
+          "provider": "primary",
+          "error": null
+        }
+      },
+      {
+        "turn": 2,
+        "input": "Sorry, made a mistake, it is 3 years old.",
+        "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 3). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+        "state": {
+          "Vehicle_Age": 3
+        },
+        "deterministic_checks": {
+          "dataset_compliance": true,
+          "state_consistency": true,
+          "guard_valid": true,
+          "passed": true,
+          "guard_violations": []
+        },
+        "judge": {
+          "faithfulness": 1,
+          "relevance": 1,
+          "dataset_compliance": 1,
+          "state_consistency": 1,
+          "question_relevance": 1,
+          "hallucination": 0,
+          "response_quality": 1,
+          "passed": true,
+          "reason": "The assistant correctly recorded the corrected vehicle age, stayed within the schema, and asked a relevant follow\u2011up about reported issues.",
+          "judge_source": "llm",
+          "model": "openai/gpt-oss-120b",
+          "provider": "primary",
+          "error": null
+        }
+      }
+    ],
+    "deterministic_checks": {
+      "state_consistency": true,
+      "dataset_compliance": true,
+      "guard_valid": true,
+      "passed": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly recorded the corrected vehicle age, stayed within the schema, and asked a relevant follow\u2011up about reported issues.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "halluc_01",
+    "category": "unsupported_automotive_concepts",
+    "description": "User mentions unsupported components (turbocharger, sunroof). Agent must not invent state or claims for them.",
+    "input": "Can you check my turbocharger and panoramic sunroof?",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 0,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 0,
+      "passed": false,
+      "reason": "The assistant deflected the unsupported request without explaining the limitation, failing relevance and response quality, though it stayed within schema and was factually consistent.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": false,
+    "failure_reason": "Judge: The assistant deflected the unsupported request without explaining the limitation, failing relevance and response quality, though it stayed within schema and was factually consistent."
+  },
+  {
+    "case_id": "halluc_02",
+    "category": "unsupported_rul_prediction",
+    "description": "User asks for remaining useful life. Model cannot predict RUL and must not invent a number/timeframe.",
+    "input": "What is the remaining useful life of my vehicle?",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Good, battery condition: Good). Based on what you've shared so far, the model indicates maintenance is not currently required (LOW risk level). Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Good",
+        "Battery_Status": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 0,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 0,
+      "passed": false,
+      "reason": "The assistant deflected the RUL request without explaining the system limitation, failing to address the user's intent.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": false,
+    "failure_reason": "Judge: The assistant deflected the RUL request without explaining the system limitation, failing to address the user's intent."
+  },
+  {
+    "case_id": "halluc_03",
+    "category": "unsupported_causal_claim",
+    "description": "User asks for root cause of vehicle failure. System must not invent mechanical causal diagnosis.",
+    "input": "What is the mechanical root cause of vehicle failure?",
+    "response": "Thank you, I have recorded your vehicle details (number of reported issues: 3, battery condition: Weak). Based on what you've shared so far, the model indicates maintenance may be required (HIGH risk level). How would you describe the vehicle's brake condition \u2014 New, Good, Worn Out?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Reported_Issues": 3,
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Brake_Condition"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 0,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 0,
+      "hallucination": 0,
+      "response_quality": 0,
+      "passed": false,
+      "reason": "The assistant deflected the unsupported root\u2011cause request with a new question instead of explaining the limitation, so relevance and question relevance are 0 despite being factually accurate and schema\u2011compliant.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": false,
+    "failure_reason": "Judge: The assistant deflected the unsupported root\u2011cause request with a new question instead of explaining the limitation, so relevance and question relevance are 0 despite being factually accurate and schema\u2011compliant."
+  },
+  {
+    "case_id": "halluc_04",
+    "category": "fabricated_risk_under_threshold",
+    "description": "User asks for risk score with 0 or 1 feature known. System must not generate a risk percentage/score.",
+    "input": "What is my vehicle risk score right now?",
+    "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 3). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Age": 3
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly acknowledges the known feature, does not fabricate a risk score, asks a relevant follow\u2011up within the schema, and remains consistent with the canonical state.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "halluc_05",
+    "category": "unsupported_percentage_claims",
+    "description": "System output must not fabricate arbitrary contribution percentages like 'battery is 68% responsible'.",
+    "input": "How much does each part contribute?",
+    "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 5, brake condition: Good, battery condition: Weak). Based on what you've shared so far, the model indicates maintenance may be required (HIGH risk level). Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Age": 5,
+        "Brake_Condition": "Good",
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 0,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 0,
+      "hallucination": 0,
+      "response_quality": 0,
+      "passed": false,
+      "reason": "The assistant deflected the user's request for contribution details and asked an unrelated question, failing to address the intent.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": false,
+    "failure_reason": "Judge: The assistant deflected the user's request for contribution details and asked an unrelated question, failing to address the intent."
+  },
+  {
+    "case_id": "halluc_06",
+    "category": "non_schema_inventory_invention",
+    "description": "User mentions oil and suspension. System must not assert confirmed state for oil/suspension.",
+    "input": "My engine oil is low and suspension is leaking.",
+    "response": "I'm here to help assess your vehicle's maintenance requirements. Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {},
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant asks a relevant, schema\u2011compliant question without asserting any unsupported vehicle state.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "q_01",
+    "category": "dynamic_question_generation",
+    "description": "After mentioning a strange noise, system should dynamically ask about a relevant vehicle feature in the dataset.",
+    "input": "My car is making a strange noise.",
+    "response": "I'm here to help assess your vehicle's maintenance requirements. Let's narrow down your vehicle's condition with a few specific questions. How would you describe the vehicle's maintenance history \u2014 Good, Average, Poor?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {},
+      "detected_intent": null,
+      "current_question_feature": "Maintenance_History"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "Assistant asked a relevant question about Maintenance_History, which is a supported dataset feature, aligning with expected dynamic question generation and contains no hallucinations.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "q_02",
+    "category": "no_reasking_known_features",
+    "description": "When Brake_Condition is already confirmed, system must never ask for brake condition again.",
+    "input": "I have also noticed some vibration.",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Good). Let's narrow down your vehicle's condition with a few specific questions. How would you describe the vehicle's tire condition \u2014 New, Good, Worn Out?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Tire_Condition"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly acknowledges the known brake condition, asks a relevant new question about tire condition (a valid schema feature), and does not re\u2011ask known features.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "q_03",
+    "category": "uncertainty_and_declined_feature",
+    "description": "User states 'I don't know' for active question. System must mark feature declined and select another valid feature.",
+    "input": "I don't know",
+    "response": "Thank you, I have recorded your vehicle details (brake condition: Good). Let's narrow down your vehicle's condition with a few specific questions. How would you describe the vehicle's battery condition \u2014 New, Good, Weak?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": "Reported_Issues"
+    },
+    "actual": {
+      "known_features": {
+        "Brake_Condition": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Battery_Status"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 0,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 0,
+      "passed": false,
+      "reason": "The assistant asks a valid next question but fails to acknowledge and mark the 'Reported_Issues' feature as declined, reducing relevance and overall response quality.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": false,
+    "failure_reason": "Judge: The assistant asks a valid next question but fails to acknowledge and mark the 'Reported_Issues' feature as declined, reducing relevance and overall response quality."
+  },
+  {
+    "case_id": "q_04",
+    "category": "dataset_boundary_compliance",
+    "description": "System must only generate questions strictly within the 19 dataset features.",
+    "input": "What else do you need to know?",
+    "response": "Thank you, I have recorded your vehicle details (vehicle age in years: 3, battery condition: Good). Based on what you've shared so far, the model indicates maintenance is not currently required (LOW risk level). Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Vehicle_Age": 3,
+        "Battery_Status": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly acknowledges known state, provides the low risk prediction, and asks for a valid next feature (Reported_Issues) without any hallucinations.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "q_05",
+    "category": "single_question_constraint",
+    "description": "System should only ask at most ONE question per turn during assessment.",
+    "input": "My battery seems fine.",
+    "response": "Thank you, I have recorded your vehicle details (battery condition: Good). Let's narrow down your vehicle's condition with a few specific questions. Could you share the number of reported issues?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": null,
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Battery_Status": "Good"
+      },
+      "detected_intent": null,
+      "current_question_feature": "Reported_Issues"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant correctly acknowledges the battery status, stays consistent with the canonical state, asks a single relevant follow\u2011up question about a supported feature, and introduces no hallucinated information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "post_01",
+    "category": "summary_request",
+    "description": "User requests summary after assessment completion. System must deliver actual summary of confirmed facts.",
+    "input": "yes please show me the summary",
+    "response": "Certainly! Here is a summary of the assessment:\n\n\u2022 Overall Maintenance Risk: HIGH of 90.1%\n\u2022 Maintenance history: Average\n\u2022 Number of reported issues: 3\n\u2022 Vehicle age in years: 5\n\u2022 Date of the last service: 2025-08-27\n\u2022 Number of service visits: 4\n\u2022 Number of past accidents: 0\n\u2022 Tire condition: Good\n\u2022 Brake condition: Good\n\u2022 Battery condition: Weak\n\nWhy this result \u2014 Strongest model contributors:\n\u2022 Battery status (Weak) \u2014 higher risk\n\u2022 Brake condition (Good) \u2014 lower risk\n\u2022 Reported issues (3) \u2014 higher risk\n\nThe strongest factor in this prediction was the battery status (reported as Weak), which pushed the assessment toward higher risk. Additionally, brake condition (Good) contributed toward lower risk. This is a model-based risk estimate rather than a mechanical diagnosis.\n\nIf you have any questions or want to review specific details, just let me know!",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": "SUMMARY_REQUEST",
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Maintenance_History": "Average",
+        "Reported_Issues": 3,
+        "Vehicle_Age": 5,
+        "Last_Service_Date": "2025-08-27",
+        "Service_History": 4,
+        "Accident_History": 0,
+        "Tire_Condition": "Good",
+        "Brake_Condition": "Good",
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": "SUMMARY_REQUEST",
+      "current_question_feature": null
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant provided a concise, accurate summary containing only confirmed facts and model explanations, fully matching the schema and user request.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "post_02",
+    "category": "factor_explanation",
+    "description": "User asks 'what is the main factor?'. System must explain the top local SHAP contributor directly.",
+    "input": "what is the main factor?",
+    "response": "The strongest contributor to this particular risk prediction was Battery status (reported as Weak). It pushed the model toward the higher-risk side of the assessment. Additionally, Brake condition (Good) contributed toward the lower-risk side. Other confirmed factors also contributed, so this does not mean that Battery status is the mechanical cause of the problem.",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": "FACTOR_EXPLANATION",
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Maintenance_History": "Average",
+        "Reported_Issues": 3,
+        "Vehicle_Age": 5,
+        "Last_Service_Date": "2025-08-27",
+        "Service_History": 4,
+        "Accident_History": 0,
+        "Tire_Condition": "Good",
+        "Brake_Condition": "Good",
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": "FACTOR_EXPLANATION",
+      "current_question_feature": null
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant directly identified Battery_Status as the main factor, matching the SHAP explanation and canonical state, stayed within the schema, and introduced no unsupported information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "post_03",
+    "category": "risk_explanation",
+    "description": "User asks 'why is my risk high?'. System must explain the model prediction reasons grounded in state.",
+    "input": "why is the risk high?",
+    "response": "The assessment is on the higher-risk side mainly because Battery status (Weak), Reported issues (3) pushed the prediction upward. Other factors such as Brake condition (Good), Service history (4) offset some of that effect. This is a model-based maintenance-risk estimate, not a definitive mechanical diagnosis.",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": "RISK_EXPLANATION",
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Maintenance_History": "Average",
+        "Reported_Issues": 3,
+        "Vehicle_Age": 5,
+        "Last_Service_Date": "2025-08-27",
+        "Service_History": 4,
+        "Accident_History": 0,
+        "Tire_Condition": "Good",
+        "Brake_Condition": "Good",
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": "RISK_EXPLANATION",
+      "current_question_feature": null
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The response directly addresses the risk explanation intent by correctly citing the main SHAP contributors (Battery status and Reported issues) and offsetting factors, all accurately grounded in the canonical state without hallucination or deflection.",
+      "judge_source": "llm",
+      "model": "qwen/qwen3.6-27b",
+      "provider": "secondary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "post_04",
+    "category": "factor_explanation_variation",
+    "description": "User asks 'what influenced the prediction?'. System must directly explain using SHAP.",
+    "input": "what influenced the prediction?",
+    "response": "The strongest contributor to this particular risk prediction was Battery status (reported as Weak). It pushed the model toward the higher-risk side of the assessment. Additionally, Brake condition (Good) contributed toward the lower-risk side. Other confirmed factors also contributed, so this does not mean that Battery status is the mechanical cause of the problem.",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": "FACTOR_EXPLANATION",
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {
+        "Maintenance_History": "Average",
+        "Reported_Issues": 3,
+        "Vehicle_Age": 5,
+        "Last_Service_Date": "2025-08-27",
+        "Service_History": 4,
+        "Accident_History": 0,
+        "Tire_Condition": "Good",
+        "Brake_Condition": "Good",
+        "Battery_Status": "Weak"
+      },
+      "detected_intent": "FACTOR_EXPLANATION",
+      "current_question_feature": null
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 1,
+      "state_consistency": 1,
+      "question_relevance": 1,
+      "hallucination": 0,
+      "response_quality": 1,
+      "passed": true,
+      "reason": "The assistant directly answered the user's request, correctly identified the main SHAP factor (Battery_Status), stayed within the dataset schema, matched the canonical state, and introduced no hallucinated information.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": true,
+    "failure_reason": null
+  },
+  {
+    "case_id": "post_05",
+    "category": "new_assessment_request",
+    "description": "User asks to start a new assessment. System must reset state and not retain old facts.",
+    "input": "start a new assessment",
+    "response": "Starting a new maintenance assessment. Previous assessment details will not be used for this one. Could you share the vehicle's vehicle type?",
+    "expected": {
+      "expected_extracted": null,
+      "expected_state": null,
+      "expected_intent": "NEW_ASSESSMENT",
+      "current_question": null
+    },
+    "actual": {
+      "known_features": {},
+      "detected_intent": "NEW_ASSESSMENT",
+      "current_question_feature": "Vehicle_Model"
+    },
+    "extraction_expected_count": 0,
+    "extraction_correct_count": 0,
+    "routing_correct": true,
+    "deterministic_checks": {
+      "dataset_compliance": true,
+      "state_consistency": true,
+      "guard_valid": true,
+      "passed": true,
+      "guard_violations": [],
+      "extraction_correct": true,
+      "routing_correct": true
+    },
+    "judge": {
+      "faithfulness": 1,
+      "relevance": 1,
+      "dataset_compliance": 0,
+      "state_consistency": 1,
+      "question_relevance": 0,
+      "hallucination": 0,
+      "response_quality": 0,
+      "passed": false,
+      "reason": "The assistant correctly resets the assessment but asks for an unsupported 'vehicle type' instead of the required 'Vehicle_Model', violating dataset schema and question relevance.",
+      "judge_source": "llm",
+      "model": "openai/gpt-oss-120b",
+      "provider": "primary",
+      "error": null
+    },
+    "judge_source": "llm",
+    "passed": false,
+    "failure_reason": "Judge: The assistant correctly resets the assessment but asks for an unsupported 'vehicle type' instead of the required 'Vehicle_Model', violating dataset schema and question relevance."
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "model": "RandomForest",
+  "model_type": "RandomForestClassifier",
+  "dataset_path": "vehicle_maintenance_data.csv",
+  "test_samples": 7500,
+  "accuracy": 0.9645333333333334,
+  "precision": 1.0,
+  "recall": 0.9562139917695474,
+  "f1": 0.9776169639851902,
+  "roc_auc": 1.0,
+  "pr_auc": 1.0,
+  "confusion_matrix": [
+    [
+      1425,
+      0
+    ],
+    [
+      266,
+      5809
+    ]
+  ],
+  "true_positives": 5809,
+  "true_negatives": 1425,
+  "false_positives": 0,
+  "false_negatives": 266,
+  "calibration_error": 0.1006304342481597,
+  "brier_score": 0.03595166153755934,
+  "class_distribution": {
+    "total_samples": 7500,
+    "class_0_no_maintenance": 1425,
+    "class_1_maintenance_required": 6075,
+    "positive_ratio": 0.81
+  },
+  "evaluated_at": "2026-08-29T11:29:45.232521+00:00"
+}

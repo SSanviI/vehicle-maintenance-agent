@@ -1,0 +1,34 @@
+{
+  "model_version": "2.0.0",
+  "target": "Need_Maintenance",
+  "target_classes": {
+    "0": "no_maintenance_needed",
+    "1": "maintenance_required"
+  },
+  "selected_features": ["Vehicle_Model", "Mileage", "Maintenance_History", "Reported_Issues", "Vehicle_Age", "Fuel_Type", "Transmission_Type", "Engine_Size", "Odometer_Reading", "Last_Service_Date", "Warranty_Expiry_Date", "Owner_Type", "Insurance_Premium", "Service_History", "Accident_History", "Fuel_Efficiency", "Tire_Condition", "Brake_Condition", "Battery_Status"],
+  "numerical_features": [
+    "Mileage", "Reported_Issues", "Vehicle_Age", "Engine_Size", "Odometer_Reading", "Insurance_Premium", "Service_History", "Accident_History", "Fuel_Efficiency"
+  ],
+  "date_features": ["Last_Service_Date", "Warranty_Expiry_Date"],
+  "categorical_features": [
+    "Vehicle_Model", "Maintenance_History", "Fuel_Type", "Transmission_Type", "Owner_Type", "Tire_Condition", "Brake_Condition", "Battery_Status"
+  ],
+  "categorical_values": {
+    "Vehicle_Model": ["Bus", "Car", "Motorcycle", "SUV", "Truck", "Van", "UNKNOWN"],
+    "Maintenance_History": ["Good", "Average", "Poor", "UNKNOWN"],
+    "Fuel_Type": ["Diesel", "Electric", "Petrol", "UNKNOWN"],
+    "Transmission_Type": ["Automatic", "Manual", "UNKNOWN"],
+    "Owner_Type": ["First", "Second", "Third", "UNKNOWN"],
+    "Tire_Condition": ["New", "Good", "Worn Out", "UNKNOWN"],
+    "Brake_Condition": ["New", "Good", "Worn Out", "UNKNOWN"],
+    "Battery_Status": ["New", "Good", "Weak", "UNKNOWN"]
+  },
+  "feature_priority": [
+    "Reported_Issues", "Brake_Condition", "Battery_Status", "Maintenance_History", "Service_History", "Accident_History", "Vehicle_Age", "Tire_Condition", "Odometer_Reading", "Mileage", "Last_Service_Date", "Warranty_Expiry_Date", "Engine_Size", "Fuel_Efficiency", "Insurance_Premium", "Vehicle_Model", "Fuel_Type", "Transmission_Type", "Owner_Type"
+  ],
+  "feature_display_names": {
+    "Vehicle_Model": "vehicle type", "Mileage": "mileage", "Maintenance_History": "maintenance history", "Reported_Issues": "number of reported issues", "Vehicle_Age": "vehicle age in years", "Fuel_Type": "fuel type", "Transmission_Type": "transmission type", "Engine_Size": "engine size in cc", "Odometer_Reading": "odometer reading", "Last_Service_Date": "date of the last service", "Warranty_Expiry_Date": "warranty expiry date", "Owner_Type": "owner history", "Insurance_Premium": "insurance premium", "Service_History": "number of service visits", "Accident_History": "number of past accidents", "Fuel_Efficiency": "fuel efficiency", "Tire_Condition": "tire condition", "Brake_Condition": "brake condition", "Battery_Status": "battery condition"
+  },
+  "min_features_for_prediction": 2,
+  "notes": "All 19 predictor columns from the source dataset; Need_Maintenance is the target, not a model feature."
+}

@@ -1,0 +1,2 @@
+# Root requirements.txt pointing to backend dependencies
+-r backend/requirements.txt

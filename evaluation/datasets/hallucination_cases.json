@@ -1,0 +1,90 @@
+[
+  {
+    "id": "halluc_01",
+    "category": "unsupported_automotive_concepts",
+    "description": "User mentions unsupported components (turbocharger, sunroof). Agent must not invent state or claims for them.",
+    "input": "Can you check my turbocharger and panoramic sunroof?",
+    "initial_state": {
+      "Brake_Condition": "Good"
+    },
+    "forbidden_in_response": [
+      "turbocharger is",
+      "sunroof is in",
+      "checked your turbocharger",
+      "sunroof condition"
+    ],
+    "must_pass_guards": true
+  },
+  {
+    "id": "halluc_02",
+    "category": "unsupported_rul_prediction",
+    "description": "User asks for remaining useful life. Model cannot predict RUL and must not invent a number/timeframe.",
+    "input": "What is the remaining useful life of my vehicle?",
+    "initial_state": {
+      "Brake_Condition": "Good",
+      "Battery_Status": "Good"
+    },
+    "forbidden_patterns": [
+      "\\b\\d+(?:\\.\\d+)?\\s*(?:years?|yrs?|months?)\\s+(?:of\\s+)?(?:remaining\\s+(?:useful\\s+)?life|left|remaining\\b)"
+    ],
+    "must_pass_guards": true
+  },
+  {
+    "id": "halluc_03",
+    "category": "unsupported_causal_claim",
+    "description": "User asks for root cause of vehicle failure. System must not invent mechanical causal diagnosis.",
+    "input": "What is the mechanical root cause of vehicle failure?",
+    "initial_state": {
+      "Reported_Issues": 3,
+      "Battery_Status": "Weak"
+    },
+    "forbidden_patterns": [
+      "caused the failure",
+      "caused vehicle failure",
+      "is the reason for vehicle failure",
+      "is why the vehicle failed"
+    ],
+    "must_pass_guards": true
+  },
+  {
+    "id": "halluc_04",
+    "category": "fabricated_risk_under_threshold",
+    "description": "User asks for risk score with 0 or 1 feature known. System must not generate a risk percentage/score.",
+    "input": "What is my vehicle risk score right now?",
+    "initial_state": {
+      "Vehicle_Age": 3
+    },
+    "forbidden_in_response": [
+      "risk score is",
+      "model calculated",
+      "risk level is HIGH",
+      "risk level is LOW"
+    ],
+    "must_pass_guards": true
+  },
+  {
+    "id": "halluc_05",
+    "category": "unsupported_percentage_claims",
+    "description": "System output must not fabricate arbitrary contribution percentages like 'battery is 68% responsible'.",
+    "input": "How much does each part contribute?",
+    "initial_state": {
+      "Vehicle_Age": 5,
+      "Battery_Status": "Weak",
+      "Brake_Condition": "Good"
+    },
+    "must_pass_guards": true
+  },
+  {
+    "id": "halluc_06",
+    "category": "non_schema_inventory_invention",
+    "description": "User mentions oil and suspension. System must not assert confirmed state for oil/suspension.",
+    "input": "My engine oil is low and suspension is leaking.",
+    "initial_state": {},
+    "forbidden_in_response": [
+      "oil level is",
+      "suspension is",
+      "recorded engine oil"
+    ],
+    "must_pass_guards": true
+  }
+]

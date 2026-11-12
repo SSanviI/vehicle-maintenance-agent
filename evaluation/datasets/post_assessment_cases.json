@@ -1,0 +1,111 @@
+[
+  {
+    "id": "post_01",
+    "category": "summary_request",
+    "description": "User requests summary after assessment completion. System must deliver actual summary of confirmed facts.",
+    "input": "yes please show me the summary",
+    "assessment_complete": true,
+    "initial_mode": "AWAITING_SUMMARY_CONFIRMATION",
+    "initial_state": {
+      "Maintenance_History": "Average",
+      "Reported_Issues": 3,
+      "Vehicle_Age": 5,
+      "Last_Service_Date": "2025-08-27",
+      "Service_History": 4,
+      "Accident_History": 0,
+      "Tire_Condition": "Good",
+      "Brake_Condition": "Good",
+      "Battery_Status": "Weak"
+    },
+    "expected_intent": "SUMMARY_REQUEST",
+    "must_contain_confirmed_facts": true,
+    "forbidden_in_response": [
+      "would you like to see a summary"
+    ]
+  },
+  {
+    "id": "post_02",
+    "category": "factor_explanation",
+    "description": "User asks 'what is the main factor?'. System must explain the top local SHAP contributor directly.",
+    "input": "what is the main factor?",
+    "assessment_complete": true,
+    "initial_mode": "AWAITING_SUMMARY_CONFIRMATION",
+    "initial_state": {
+      "Maintenance_History": "Average",
+      "Reported_Issues": 3,
+      "Vehicle_Age": 5,
+      "Last_Service_Date": "2025-08-27",
+      "Service_History": 4,
+      "Accident_History": 0,
+      "Tire_Condition": "Good",
+      "Brake_Condition": "Good",
+      "Battery_Status": "Weak"
+    },
+    "expected_intent": "FACTOR_EXPLANATION",
+    "must_mention_main_factor": true,
+    "forbidden_in_response": [
+      "would you like to see a summary"
+    ]
+  },
+  {
+    "id": "post_03",
+    "category": "risk_explanation",
+    "description": "User asks 'why is my risk high?'. System must explain the model prediction reasons grounded in state.",
+    "input": "why is the risk high?",
+    "assessment_complete": true,
+    "initial_mode": "AWAITING_SUMMARY_CONFIRMATION",
+    "initial_state": {
+      "Maintenance_History": "Average",
+      "Reported_Issues": 3,
+      "Vehicle_Age": 5,
+      "Last_Service_Date": "2025-08-27",
+      "Service_History": 4,
+      "Accident_History": 0,
+      "Tire_Condition": "Good",
+      "Brake_Condition": "Good",
+      "Battery_Status": "Weak"
+    },
+    "expected_intent": "RISK_EXPLANATION",
+    "forbidden_in_response": [
+      "would you like to see a summary"
+    ]
+  },
+  {
+    "id": "post_04",
+    "category": "factor_explanation_variation",
+    "description": "User asks 'what influenced the prediction?'. System must directly explain using SHAP.",
+    "input": "what influenced the prediction?",
+    "assessment_complete": true,
+    "initial_mode": "AWAITING_SUMMARY_CONFIRMATION",
+    "initial_state": {
+      "Maintenance_History": "Average",
+      "Reported_Issues": 3,
+      "Vehicle_Age": 5,
+      "Last_Service_Date": "2025-08-27",
+      "Service_History": 4,
+      "Accident_History": 0,
+      "Tire_Condition": "Good",
+      "Brake_Condition": "Good",
+      "Battery_Status": "Weak"
+    },
+    "expected_intent": "FACTOR_EXPLANATION",
+    "must_mention_main_factor": true,
+    "forbidden_in_response": [
+      "would you like to see a summary"
+    ]
+  },
+  {
+    "id": "post_05",
+    "category": "new_assessment_request",
+    "description": "User asks to start a new assessment. System must reset state and not retain old facts.",
+    "input": "start a new assessment",
+    "assessment_complete": true,
+    "initial_mode": "SUMMARY",
+    "initial_state": {
+      "Brake_Condition": "Good",
+      "Battery_Status": "Weak"
+    },
+    "expected_intent": "NEW_ASSESSMENT",
+    "expected_reset": true
+  }
+]

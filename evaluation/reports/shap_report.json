@@ -1,0 +1,136 @@
+{
+  "total_test_cases": 6,
+  "successful_explanations": 6,
+  "explanation_success_rate": 1.0,
+  "top_factor_validity_rate": 1.0,
+  "feature_schema_compliance_rate": 1.0,
+  "evaluated_at": "2026-08-29T11:29:46.156123+00:00",
+  "case_details": [
+    {
+      "case_id": "shap_case_01",
+      "name": "High Risk \u2014 Weak Battery & Worn Brakes",
+      "prediction_class": 1,
+      "risk_level": "HIGH",
+      "model_score": 1.0,
+      "explanation_available": true,
+      "main_factor": {
+        "feature": "Reported_Issues",
+        "display_name": "Reported issues",
+        "value": 4,
+        "contribution": 0.1773,
+        "shap_value": 0.1773,
+        "abs_contribution": 0.1773,
+        "direction": "higher_risk"
+      },
+      "all_features_in_schema": true,
+      "top_factor_valid": true,
+      "top_contributors_count": 4,
+      "shap_base_value": 0.49992603466270724
+    },
+    {
+      "case_id": "shap_case_02",
+      "name": "Low Risk \u2014 Good Brakes, Good Battery, 0 Issues",
+      "prediction_class": 0,
+      "risk_level": "LOW",
+      "model_score": 0.186,
+      "explanation_available": true,
+      "main_factor": {
+        "feature": "Reported_Issues",
+        "display_name": "Reported issues",
+        "value": 0,
+        "contribution": -0.118,
+        "shap_value": -0.118,
+        "abs_contribution": 0.118,
+        "direction": "lower_risk"
+      },
+      "all_features_in_schema": true,
+      "top_factor_valid": true,
+      "top_contributors_count": 4,
+      "shap_base_value": 0.49992603466270724
+    },
+    {
+      "case_id": "shap_case_03",
+      "name": "Full Assessment State \u2014 9 Known Features",
+      "prediction_class": 1,
+      "risk_level": "HIGH",
+      "model_score": 0.9007,
+      "explanation_available": true,
+      "main_factor": {
+        "feature": "Battery_Status",
+        "display_name": "Battery status",
+        "value": "Weak",
+        "contribution": 0.4112,
+        "shap_value": 0.4112,
+        "abs_contribution": 0.4112,
+        "direction": "higher_risk"
+      },
+      "all_features_in_schema": true,
+      "top_factor_valid": true,
+      "top_contributors_count": 9,
+      "shap_base_value": 0.49992603466270724
+    },
+    {
+      "case_id": "shap_case_04",
+      "name": "Minimal Input State \u2014 Exactly 2 Known Features",
+      "prediction_class": 1,
+      "risk_level": "HIGH",
+      "model_score": 0.8537,
+      "explanation_available": true,
+      "main_factor": {
+        "feature": "Brake_Condition",
+        "display_name": "Brake condition",
+        "value": "Worn Out",
+        "contribution": 0.404,
+        "shap_value": 0.404,
+        "abs_contribution": 0.404,
+        "direction": "higher_risk"
+      },
+      "all_features_in_schema": true,
+      "top_factor_valid": true,
+      "top_contributors_count": 2,
+      "shap_base_value": 0.49992603466270724
+    },
+    {
+      "case_id": "shap_case_05",
+      "name": "Mixed State \u2014 Poor Maintenance History with Good Battery",
+      "prediction_class": 0,
+      "risk_level": "LOW",
+      "model_score": 0.4131,
+      "explanation_available": true,
+      "main_factor": {
+        "feature": "Battery_Status",
+        "display_name": "Battery status",
+        "value": "Good",
+        "contribution": -0.0839,
+        "shap_value": -0.0839,
+        "abs_contribution": 0.0839,
+        "direction": "lower_risk"
+      },
+      "all_features_in_schema": true,
+      "top_factor_valid": true,
+      "top_contributors_count": 3,
+      "shap_base_value": 0.49992603466270724
+    },
+    {
+      "case_id": "shap_case_06",
+      "name": "Accident & Tire Focus",
+      "prediction_class": 0,
+      "risk_level": "LOW",
+      "model_score": 0.4122,
+      "explanation_available": true,
+      "main_factor": {
+        "feature": "Accident_History",
+        "display_name": "Accident history",
+        "value": 2,
+        "contribution": 0.0298,
+        "shap_value": 0.0298,
+        "abs_contribution": 0.0298,
+        "direction": "higher_risk"
+      },
+      "all_features_in_schema": true,
+      "top_factor_valid": true,
+      "top_contributors_count": 3,
+      "shap_base_value": 0.49992603466270724
+    }
+  ]
+}

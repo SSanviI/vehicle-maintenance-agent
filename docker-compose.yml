@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: vm_backend
+    ports:
+      - "7860:7860"
+    environment:
+      - APP_ENV=production
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/vehicle_maintenance
+      - REDIS_URL=redis://redis:6379/0
+
+      - PRIMARY_LLM_PROVIDER=groq
+      - PRIMARY_LLM_MODEL=openai/gpt-oss-120b
+      - PRIMARY_LLM_API_KEY=${PRIMARY_LLM_API_KEY}
+      - PRIMARY_LLM_BASE_URL=https://api.groq.com/openai/v1
+
+      - SECONDARY_LLM_PROVIDER=groq
+      - SECONDARY_LLM_MODEL=qwen/qwen3.6-27b
+      - SECONDARY_LLM_API_KEY=${SECONDARY_LLM_API_KEY}
+      - SECONDARY_LLM_BASE_URL=https://api.groq.com/openai/v1
+    depends_on:
+      - redis
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: vm_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: vm_postgres
+    environment:
+      POSTGRES_DB: vehicle_maintenance
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: vm_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:

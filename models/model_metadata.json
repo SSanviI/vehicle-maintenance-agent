@@ -1,0 +1,159 @@
+{
+  "model_name": "random_forest",
+  "selected_features": [
+    "Vehicle_Model",
+    "Mileage",
+    "Maintenance_History",
+    "Reported_Issues",
+    "Vehicle_Age",
+    "Fuel_Type",
+    "Transmission_Type",
+    "Engine_Size",
+    "Odometer_Reading",
+    "Last_Service_Date",
+    "Warranty_Expiry_Date",
+    "Owner_Type",
+    "Insurance_Premium",
+    "Service_History",
+    "Accident_History",
+    "Fuel_Efficiency",
+    "Tire_Condition",
+    "Brake_Condition",
+    "Battery_Status"
+  ],
+  "categorical_features": [
+    "Vehicle_Model",
+    "Maintenance_History",
+    "Fuel_Type",
+    "Transmission_Type",
+    "Owner_Type",
+    "Tire_Condition",
+    "Brake_Condition",
+    "Battery_Status"
+  ],
+  "numerical_features": [
+    "Mileage",
+    "Reported_Issues",
+    "Vehicle_Age",
+    "Engine_Size",
+    "Odometer_Reading",
+    "Insurance_Premium",
+    "Service_History",
+    "Accident_History",
+    "Fuel_Efficiency"
+  ],
+  "date_features": [
+    "Last_Service_Date",
+    "Warranty_Expiry_Date"
+  ],
+  "categorical_values": {
+    "Vehicle_Model": [
+      "Bus",
+      "Car",
+      "Motorcycle",
+      "SUV",
+      "Truck",
+      "Van"
+    ],
+    "Maintenance_History": [
+      "Good",
+      "Average",
+      "Poor"
+    ],
+    "Fuel_Type": [
+      "Diesel",
+      "Electric",
+      "Petrol"
+    ],
+    "Transmission_Type": [
+      "Automatic",
+      "Manual"
+    ],
+    "Owner_Type": [
+      "First",
+      "Second",
+      "Third"
+    ],
+    "Tire_Condition": [
+      "New",
+      "Good",
+      "Worn Out"
+    ],
+    "Brake_Condition": [
+      "New",
+      "Good",
+      "Worn Out"
+    ],
+    "Battery_Status": [
+      "New",
+      "Good",
+      "Weak"
+    ]
+  },
+  "feature_priority": [
+    "Reported_Issues",
+    "Brake_Condition",
+    "Battery_Status",
+    "Maintenance_History",
+    "Service_History",
+    "Accident_History",
+    "Vehicle_Age",
+    "Tire_Condition",
+    "Odometer_Reading",
+    "Mileage",
+    "Last_Service_Date",
+    "Warranty_Expiry_Date",
+    "Engine_Size",
+    "Fuel_Efficiency",
+    "Insurance_Premium",
+    "Vehicle_Model",
+    "Fuel_Type",
+    "Transmission_Type",
+    "Owner_Type"
+  ],
+  "target": "Need_Maintenance",
+  "training_samples": 140000,
+  "validation_metrics": {
+    "accuracy": 0.9650666666666666,
+    "precision": 1.0,
+    "recall": 0.9568724279835391,
+    "f1": 0.9779609690444145,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "confusion_matrix": [
+      [
+        1425,
+        0
+      ],
+      [
+        262,
+        5813
+      ]
+    ],
+    "false_negatives": 262,
+    "false_positives": 0,
+    "calibration_error": 0.30287845636304056
+  },
+  "test_metrics": {
+    "accuracy": 0.9628,
+    "precision": 1.0,
+    "recall": 0.9540665130062562,
+    "f1": 0.9764933861319404,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "confusion_matrix": [
+      [
+        1426,
+        0
+      ],
+      [
+        279,
+        5795
+      ]
+    ],
+    "false_negatives": 279,
+    "false_positives": 0,
+    "calibration_error": 0.3031362883535903
+  },
+  "trained_at": "2026-08-26T16:25:21.031457"
+}
